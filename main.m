@@ -5,18 +5,18 @@
 clear all; close all; clc;
 
 addpath('model_castle');
-run('vl_feat Toolbox/toolbox/vl_setup.m');
-
+run('../vl_feat Toolbox/toolbox/vl_setup.m');
 
 %% load files
 im1 = im2single(rgb2gray(imread('8ADT8604.jpg')));
-[f1, d1] = vl_sift(im1);
+[f1,d1] = vl_sift(im1,'Octaves', 1, 'Levels', 3, 'FirstOctave', 0, 'EdgeThresh',2);
 
 figure(1)
 subplot(1,2,1)
 imagesc(im1); colormap gray; hold on ;
 vl_plotframe(f1);
-
+vl_plotsiftdescriptor(d1, f1) ;
+title('Left image with keypoints and discriptors','FontSize',16)
 
 % Show a discriptor in image 1
 title('Left image with keypoints and a discriptor','FontSize',16)
