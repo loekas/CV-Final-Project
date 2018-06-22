@@ -63,7 +63,7 @@ Points(2:2:end,:)=pointsy;
 
 %Shift the mean of the points to zero
 Points_mean1 = mean(Points,2);
-Points_norm1 = Points-Points_mean1;
+Points_norm1 = Points-Points_mean;
 
 
 %singular value decomposition
@@ -80,6 +80,7 @@ S = sqrtm(W)*V';
 %solve for affine ambiguity using non-linear least squares
 A   = M;
 L0  = zeros(3,3);
+save('M','M')
 
 L = lsqnonlin(@myfun,L0);
 
@@ -88,6 +89,6 @@ M = M*C;
 S = pinv(C)*S;
 
 hold on
-plot3(S(1,:),S(2,:),S(3,:),'.m');
+plot3(S(1,:),S(2,:),-S(3,:),'.m');
 
 end

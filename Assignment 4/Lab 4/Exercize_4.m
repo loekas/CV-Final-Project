@@ -1,8 +1,8 @@
 %% Lab exercize 4
 
 %% setup
-addpath('../model house');
-addpath('../code_updated');
+addpath('model house');
+addpath('code_updated');
 run('../../../vl_feat Toolbox/toolbox/vl_setup.m');
 
 %% 1.2 Lucas-Kanade Algorithm
