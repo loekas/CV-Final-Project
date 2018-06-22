@@ -74,7 +74,7 @@ function [T_best, detections] = ransac(img1, img2, P, no_points,threshold)
             feat2_trans = [feat2_trans , T2dA*[feat1_before(1,k) ; feat1_before(2,k)] + T2db ];
         end
         
-        inliers = find( sqrt( sum( (feat2_trans - feat2_target).^2)) );
+        inliers = find( sqrt( sum( (feat2_trans - feat2_target).^2))<threshold );
         number_inliers = size(inliers,2);
         
         if number_inliers> detections
