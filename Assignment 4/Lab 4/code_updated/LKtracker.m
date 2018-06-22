@@ -33,7 +33,7 @@ end
 % writerObj = VideoWriter('test.avi');
 % open(writerObj);
 
-for num = 1:size(im,3)-1 % iterating through images
+for num = 1%:size(im,3)-1 % iterating through images
     for i = 1:size(p,2)  % iterating throught points
         % make a matrix consisting of derivatives around the pixel location
         x   =  pointsx(num,i);                  %%%center of the patch
@@ -48,15 +48,15 @@ for num = 1:size(im,3)-1 % iterating through images
         pointsx(num+1,i) = pointsx(num,i)+v(1);
         pointsy(num+1,i) = pointsy(num,i)+v(2);
     end
-%     figure(1)
-%     imshow(im(:,:,num),[])
-%     hold on
-%     plot(pointsx(num,:),pointsy(num,:),'.y') %tracked points
-%     plot(p(num*2-1,:),p(num*2,:),'.m')  %ground truth
-%     frame = getframe;
-%     writeVideo(writerObj,frame);
+    figure(1)
+    imshow(im(:,:,num),[])
+    hold on
+    plot(pointsx(num,:),pointsy(num,:),'.y') %tracked points
+    plot(p(num*2-1,:),p(num*2,:),'.m')  %ground truth
+    frame = getframe;
+    writeVideo(writerObj,frame);
 end
-% close(writerObj);
+close(writerObj);
 
 
 end
