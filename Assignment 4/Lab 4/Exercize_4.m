@@ -3,7 +3,7 @@
 %% setup
 addpath('model house');
 addpath('code_updated');
-run('../../vl_feat Toolbox/toolbox/vl_setup.m');
+run('../../../vl_feat Toolbox/toolbox/vl_setup.m');
 
 %% 1.2 Lucas-Kanade Algorithm
 
@@ -13,6 +13,10 @@ im2 = im2double(rgb2gray(imread('sphere2.ppm')));
 %im2 = im2double(imread('synth2.pgm'));
 sigma   = 25;
 demo12();
+
+%% 1.3 Tracking
+
+Demo13();
 
 
 

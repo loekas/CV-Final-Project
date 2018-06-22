@@ -16,7 +16,6 @@
 function [M,S] = demo2
 close all
 
-
 % % %load points
 Points = textread('model house\measurement_matrix.txt');
 % % %Shift the mean of the points to zero using "repmat" command
@@ -37,8 +36,8 @@ S = sqrt(W)*V';
 save('M','M')
 
 % % %solve for affine ambiguity
-A   = 
-L0  =
+A   = M;
+L0  = zeros(3,3);
 
 % Solve for L
 L = lsqnonlin(@myfun,L0);
@@ -48,7 +47,7 @@ C = chol(L,'lower');
 M = M*C;
 S = pinv(C)*S;
 
-plot3(S(1,:),S(2,:),S(3,:),'.y');
+plot3(S(1,:),S(2,:),S(3,:),'.b');
 
 %% For the tracked points with LKtracker
 % % Repeat the same procedure 
@@ -63,27 +62,30 @@ Points(2:2:end,:)=pointsy;
 
 
 %Shift the mean of the points to zero
+Points_mean1 = mean(Points,2);
+Points_norm1 = Points-Points_mean1;
+
 
 %singular value decomposition
-[U,W,V] = svd(Points);
+[U,W,V] = svd(Points_norm1);
 
-U = 
-W = 
-V = 
+U = U(:,1:3);
+W = W(1:3,1:3);
+V = V(:,1:3);
 
-M = 
-S = 
+M = U*sqrtm(W);
+S = sqrtm(W)*V';
+
 
 %solve for affine ambiguity using non-linear least squares
-A = 
-L0=
-save('M','M')
+A   = M;
+L0  = zeros(3,3);
 
 L = lsqnonlin(@myfun,L0);
 
 C = chol(L,'lower');
-M = 
-S = 
+M = M*C;
+S = pinv(C)*S;
 
 hold on
 plot3(S(1,:),S(2,:),S(3,:),'.m');
