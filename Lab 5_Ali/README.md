@@ -1,9 +1,9 @@
-:beginner: * EPIPOLAR GEOMETRY *
+:beginner: **EPIPOLAR GEOMETRY**
 ===
 
 The objective of this assignment is to write a function that takes two images as input and computes Fundamental matrix by Normalized 8 point Algorithm with RANSAC.
 
-:beginner: *_FUNDAMENTAL MATRIX ESTIMATION_ *
+:beginner: **_FUNDAMENTAL MATRIX ESTIMATION_**
 
 Overall scheme for fundamental matrix and epipolar geometry is defined as follows:
 
@@ -13,19 +13,19 @@ Overall scheme for fundamental matrix and epipolar geometry is defined as follow
 - Estimate the fundamental matrix for the given two images.
 
 
-:beginner: *_ EIGHT POINT ALGORITHM_*
+:beginner: **_EIGHT POINT ALGORITHM_**
 
 
 
-:beginner: *_ NORMALIZED EIGHT POINT ALGORITHM_*
+:beginner: **_NORMALIZED EIGHT POINT ALGORITHM_**
 
 
 
-:beginner: *_ RANSAC NORMALISED EIGHT POINT ALGORITHM_*
+:beginner: **_RANSAC NORMALISED EIGHT POINT ALGORITHM_**
 
 
 
 
-*_INCOMPLETE README TO BE COMPLETED, CODE PRESENTED WORKS FINE THOUGH_*
+**_INCOMPLETE README TO BE COMPLETED, CODE PRESENTED WORKS FINE THOUGH_**
 
 N.B. Affine covariant region detection with the help of : http://www.robots.ox.ac.uk/~vgg/research/affine/detectors.html

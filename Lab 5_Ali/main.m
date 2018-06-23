@@ -294,5 +294,6 @@ title('Epipolar lines, normalised 8 point algorithm : Image 2');
 P = 1.0; % Percentage of matches to be used for fundamental matrix generation
 no_points = 8; % number of points for the algorithm, for 8 point algorithm with RANSAC we pick 8 points
 threshold = 10; % pixel radius threshold for inliers
-approach = 'mypoints'; 
-[F_best, detections] = normalised_8point_ransac( feat1, feat2, matches, scores, img1, img2, P, no_points, threshold, approach); % Best fundamental matrix and corresponding inlier detections
+approach = 'mypoints'; % give in the features, matches and scores
+N = 5; % Number of iterations
+[F_best, detections] = normalised_8point_ransac( feat1, feat2, matches, scores, img1, img2, N, P, no_points, threshold, approach); % Best fundamental matrix and corresponding inlier detections
