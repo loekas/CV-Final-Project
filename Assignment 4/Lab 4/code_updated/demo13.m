@@ -2,7 +2,7 @@
 % euclidean distance between the tracked points and the groundtruth is
 % plotted for every frame.
 
-function demo2()
+function demo13()
 %load points
 Points = textread('model house\measurement_matrix.txt');
 
@@ -13,10 +13,10 @@ for num = 1:101;
         Imf=zeros(size(im,1),size(im,2),101);
     end
     Imf(:,:,num)=im;
-%     imshow(im);
-%     hold on 
-%     plot(Points(num*2-1,:),Points(num*2,:),'b.');
-%     pause(0.1)
+    imshow(im);
+    hold on 
+    plot(Points(num*2-1,:),Points(num*2,:),'b.');
+    pause(0.1)
 end
 
 %track points

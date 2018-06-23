@@ -30,8 +30,8 @@ for i=1:size(im,3)-1
     It(:,:,i) = im(:,:,i) - im(:,:,i+1);
 end
 
-% writerObj = VideoWriter('test.avi');
-% open(writerObj);
+writerObj = VideoWriter('test.avi');
+open(writerObj);
 
 for num = 1%:size(im,3)-1 % iterating through images
     for i = 1:size(p,2)  % iterating throught points

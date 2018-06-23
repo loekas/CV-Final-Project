@@ -1,6 +1,6 @@
 %function demo1
 %Shows a demo of the flow function on two images. Also produces an animated
-%gif
+%giff
 function demo12()
 
 %% Show the flow in the synthesized image
