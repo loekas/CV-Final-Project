@@ -45,9 +45,11 @@ L = lsqnonlin(@myfun,L0);
 C = chol(L,'lower');
 % Update M and S
 M = M*C;
+
+
 S = pinv(C)*S;
 
-plot3(S(1,:),S(2,:),S(3,:),'.b');
+plot3(S(1,:),S(2,:),-S(3,:),'.b');
 
 %% For the tracked points with LKtracker
 % % Repeat the same procedure 
@@ -88,6 +90,6 @@ M = M*C;
 S = pinv(C)*S;
 
 hold on
-plot3(S(1,:),S(2,:),S(3,:),'.m');
+plot3(S(1,:),S(2,:),-S(3,:),'.m');
 
 end
