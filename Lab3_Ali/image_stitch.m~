@@ -1,0 +1,5 @@
+function image_stitch(img1, img2, T)
+
+
+    imshow(imFinal);
+end
