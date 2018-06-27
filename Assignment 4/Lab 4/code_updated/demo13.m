@@ -6,7 +6,7 @@ function demo13()
 %load points
 Points = textread('model house\measurement_matrix.txt');
 
-for num = 1:101;
+for num = 1:101
     imageLoc = ['model house\frame' num2str(num, '%08d') '.jpg'];
     im = double(imread(imageLoc))/255;
     if num == 1
