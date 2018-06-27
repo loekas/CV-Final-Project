@@ -8,7 +8,6 @@
 close all; clear all; clc; % Clear memory, close previous windows and clear command window
 addpath('TeddyBear/Extraction SIFT descriptors/')
 addpath('TeddyBear/Features point detection/')
-
 %% PART 1: MATCHING
 
 %% 1.1 Detecting Harris and Hessian interest points in each image
@@ -60,7 +59,7 @@ threshold = 10;
 % Ignore points outside these bounds. To avoid missed detections at the box
 % corners
 lbx = 300;
-ubx = 1900; 
+ubx = 1900;
 [fundamental_matrices, inliers_matched_features_combined] = normalised_8point_ransac_multiframes(matched_features_combined, matches_cells, N, P, no_points, threshold, lbx, ubx);
 %%
 % Visual verfication of the results with the aid of epipolar lines

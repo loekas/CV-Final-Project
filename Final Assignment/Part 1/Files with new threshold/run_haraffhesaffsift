@@ -1,0 +1,46 @@
+#!/bin/sh
+
+./extract_features.ln -haraff -i 8ADT8586.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8587.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8588.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8589.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8590.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8591.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8592.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8593.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8594.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8595.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8596.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8597.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8598.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8599.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8600.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8601.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8602.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8603.png -thres 250 -sift
+./extract_features.ln -haraff -i 8ADT8604.png -thres 250 -sift
+
+
+./extract_features.ln -hesaff -i 8ADT8586.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8587.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8588.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8589.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8590.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8591.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8592.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8593.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8594.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8595.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8596.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8597.png -thres 250 -sift 
+./extract_features.ln -hesaff -i 8ADT8598.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8599.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8600.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8601.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8602.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8603.png -thres 250 -sift
+./extract_features.ln -hesaff -i 8ADT8604.png -thres 250 -sift
+
+
+
+

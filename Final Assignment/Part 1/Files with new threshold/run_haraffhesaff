@@ -1,0 +1,40 @@
+#!/bin/sh
+
+./h_affine.ln -haraff -i 8ADT8586.png -o 8ADT8586.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8587.png -o 8ADT8587.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8588.png -o 8ADT8588.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8589.png -o 8ADT8589.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8590.png -o 8ADT8590.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8592.png -o 8ADT8591.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8593.png -o 8ADT8593.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8594.png -o 8ADT8594.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8595.png -o 8ADT8595.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8596.png -o 8ADT8596.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8597.png -o 8ADT8597.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8598.png -o 8ADT8598.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8599.png -o 8ADT8599.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8600.png -o 8ADT8600.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8601.png -o 8ADT8601.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8602.png -o 8ADT8602.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8603.png -o 8ADT8603.haraff -thres 250
+./h_affine.ln -haraff -i 8ADT8604.png -o 8ADT8604.haraff -thres 250
+
+./h_affine.ln -hesaff -i 8ADT8586.png -o 8ADT8586.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8587.png -o 8ADT8587.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8588.png -o 8ADT8588.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8589.png -o 8ADT8589.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8590.png -o 8ADT8590.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8592.png -o 8ADT8591.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8593.png -o 8ADT8593.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8594.png -o 8ADT8594.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8595.png -o 8ADT8595.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8596.png -o 8ADT8596.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8597.png -o 8ADT8597.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8598.png -o 8ADT8598.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8599.png -o 8ADT8599.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8600.png -o 8ADT8600.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8601.png -o 8ADT8601.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8602.png -o 8ADT8602.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8603.png -o 8ADT8603.hesaff -thres 250
+./h_affine.ln -hesaff -i 8ADT8604.png -o 8ADT8604.hesaff -thres 250
+
