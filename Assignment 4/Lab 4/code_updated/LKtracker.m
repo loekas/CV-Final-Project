@@ -33,7 +33,7 @@ end
 writerObj = VideoWriter('test.avi');
 open(writerObj);
 
-for num = 1%:size(im,3)-1 % iterating through images
+for num = 1:size(im,3)-1 % iterating through images
     for i = 1:size(p,2)  % iterating throught points
         % make a matrix consisting of derivatives around the pixel location
         x   =  pointsx(num,i);                  %%%center of the patch

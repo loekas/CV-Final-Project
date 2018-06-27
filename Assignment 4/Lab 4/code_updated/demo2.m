@@ -22,9 +22,13 @@ Points = textread('model house\measurement_matrix.txt');
 % compute mean of points
 Points_mean = mean(Points,2);
 Points_norm = Points-Points_mean;
+Points_x = Points(1:2:end,:);
+Points_y = Points(2:2:end,:);
+
+Points_new = [Points_x;Points_y];
 
 % % %singular value decomposition
-[U,W,V] = svd(Points_norm);
+[U,W,V] = svd(Points_new);
 
 U = U(:,1:3);
 W = W(1:3,1:3);
@@ -37,10 +41,11 @@ save('M','M')
 
 % % %solve for affine ambiguity
 A   = M;
-L0  = zeros(3,3);
-
+L0  = inv(A'*A);
+L1  = eye(3);
 % Solve for L
 L = lsqnonlin(@myfun,L0);
+L2 = lsqnonlin(@myfun,L1);
 % Recover C
 C = chol(L,'lower');
 % Update M and S
@@ -49,7 +54,7 @@ M = M*C;
 
 S = pinv(C)*S;
 
-plot3(S(1,:),S(2,:),-S(3,:),'.b');
+plot3(S(1,:),S(2,:),S(3,:),'.b');
 
 %% For the tracked points with LKtracker
 % % Repeat the same procedure 
@@ -59,15 +64,14 @@ Points = zeros(size(Points));
 load('Xpoints')
 load('Ypoints')
 
-Points(1:2:end,:)=pointsx;
-Points(2:2:end,:)=pointsy;
+Points = [pointsx;pointsy];
 
 
 %Shift the mean of the points to zero
 Points_mean1 = mean(Points,2);
 Points_norm1 = Points-Points_mean1;
 
-
+ 
 %singular value decomposition
 [U,W,V] = svd(Points_norm1);
 
@@ -81,7 +85,7 @@ S = sqrtm(W)*V';
 
 %solve for affine ambiguity using non-linear least squares
 A   = M;
-L0  = zeros(3,3);
+L0  = inv(A'*A);
 
 L = lsqnonlin(@myfun,L0);
 
