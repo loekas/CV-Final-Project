@@ -28,8 +28,8 @@ run('../../vl_feat Toolbox/toolbox/vl_setup.m');
 
 %% AFTER FIRST INITIATION
         % load the SIFT Features from the previously constructed files
-[feat_haraff_sift, descr_haraff_sift] = features_descriptors('Part 1/Extraction SIFT descriptors/', '*.haraff.sift');
-[feat_hesaff_sift, descr_hesaff_sift] = features_descriptors('Part 1/Extraction SIFT descriptors/', '*.hesaff.sift');
+[feat_haraff_sift, descr_haraff_sift] = features_descriptors('Part 1/Files with new threshold/', '*.haraff.sift');
+[feat_hesaff_sift, descr_hesaff_sift] = features_descriptors('Part 1/Files with new threshold/', '*.hesaff.sift');
         
         % %% Generate matches and corresponding featurepoints between consecutive frames, i.e.  Frames 1-2, 2-3 ... 18-19, 19-1
 [matched_feature_points_combined, matches, scores] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift);        
@@ -37,16 +37,22 @@ run('../../vl_feat Toolbox/toolbox/vl_setup.m');
 
 %% Part 2: Apply normalized 8-point RANDAC to find best matches
 % Set parameters for Normalized 8-point RANSAC
-N = 5; 
-P = 0.80; 
+N = 10; % Number of iterations
+P = 0.5; % Percentage of matches for Normalised 8 point RANSAC algorithm
 no_points = 8;
 threshold = 10;
-
-lbx = 300;
-ubx = 1900;
+% Ignore points outside these bounds. To avoid missed detections at the box
+% corners 
+lbx = 800;
+ubx = 3200; 
 
 % Do RANSAC
-[fundamental_matrices, inliers_matched_features_combined] = normalised_8point_ransac_multiframes(matched_feature_points_combined, matches, N, P, no_points, threshold, lbx, ubx);
+[fundamental_matrices, inliers_matched_features_combined,inliers_matches] = normalised_8point_ransac_multiframes(matched_feature_points_combined, matches, N, P, no_points, threshold, lbx, ubx);
+
+%% Part 3: Apply the chaining method
+% find match indices corresponding to the newly found matched features.
+
+point_view_matrix = chain(inliers_matches);
 
 
 
@@ -54,7 +60,7 @@ ubx = 1900;
 % Visual verfication of the results with the aid of epipolar lines
 % Pick two consecutive frames
 frame1 = 19;
-frame2 = 18;
+frame2 = 1;
 
 frame1_string = num2str(frame1+585);
 frame2_string = num2str(frame2+585);
@@ -66,6 +72,8 @@ imgc2 = imread(strcat('8ADT8',frame2_string,'.png'));
 F_best_global = fundamental_matrices{1,frame1};
 feat1_bestglobal = inliers_matched_features_combined{1,frame1}{1,1};
 feat2_bestglobal = inliers_matched_features_combined{2,frame2}{1,1};
+
+plotmatches(imgc1,imgc2,feat1_bestglobal,feat2_bestglobal,inliers_matches_cells);
 
 lines = epipolarLine(F_best_global',feat2_bestglobal(1:2,:)');
 points = lineToBorderPoints(lines, size(imgc1));

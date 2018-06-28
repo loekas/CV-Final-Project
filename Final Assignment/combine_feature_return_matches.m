@@ -16,7 +16,7 @@ function [matched_features_combined, matches, scores] = combine_feature_return_m
 % * matches = indices of the matches for consecutive frames e.g. for 16
 % images: Frames 1-2, 2-3, 3-4 ... 15-16, 16-1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Script Author: Ali Nawaz, Delft University of Technology.
+% Script Author: Ali Nawaz & Lucas Pijnacker Hordijk, Delft University of Technology.
 % Aerospace Engineering Faculty [LR]
 % Mechanical, Maritime and Materials Engineering Faculty [3ME]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,15 +55,14 @@ function [matched_features_combined, matches, scores] = combine_feature_return_m
             matches_buf = cell2mat(matches(1,k));
             feat1 = feat1(:,matches_buf(1,:));
             feat2 = feat2(:,matches_buf(2,:));
-            matched_features_combined(1:2,k) = {{feat1};{feat2}};
+            matched_features_combined(1:2,k) = {feat1;feat2};
         else
             feat1 = cell2mat(feat_comb(1,k));
             feat2 = cell2mat(feat_comb(1,k+1));
             matches_buf = cell2mat(matches(1,k));
             feat1 = feat1(:,matches_buf(1,:));
             feat2 = feat2(:,matches_buf(2,:));
-            matched_features_combined(1:2,k) = {{feat1};{feat2}};
+            matched_features_combined(1:2,k) = {feat1;feat2};
         end
-        
     end
 end

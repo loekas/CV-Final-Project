@@ -1,4 +1,4 @@
-function [fundamental_matrices, inliers_matched_features_combined] = normalised_8point_ransac_multiframes(matched_features_combined, matches_cells, N, P, no_points, threshold,lbx, ubx)
+function [fundamental_matrices, inliers_matched_features_combined,inliers_matches] = normalised_8point_ransac_multiframes(matched_features_combined, matches_cells, N, P, no_points, threshold,lbx, ubx)
     % # INPUT PARAMETERS
     % * matched_features_combined = cell containined the matched features.
     % The cells should be of dimensions 2xframes. 2 rows of cells for each
@@ -16,7 +16,7 @@ function [fundamental_matrices, inliers_matched_features_combined] = normalised_
     % * inliers_matched_features_combined = Selected feature matches with
     %   inliers. 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Script Author: Ali Nawaz, Delft University of Technology.
+    % Script Author: Ali Nawaz & Lucas Pijnacker Hordijk, Delft University of Technology.
     % Aerospace Engineering Faculty [LR]
     % Mechanical, Maritime and Materials Engineering Faculty [3ME]
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,9 +24,10 @@ function [fundamental_matrices, inliers_matched_features_combined] = normalised_
     inliers_matched_features_combined = {};
     fundamental_matrices = {};
     for kk = 1:length(matches_cells)
-        feat1 = matched_features_combined{1,kk}{1,1};
-        feat2 = matched_features_combined{2,kk}{1,1};
-        
+        feat1 = matched_features_combined{1,kk};
+        feat2 = matched_features_combined{2,kk};
+        matches = matches_cells{1,kk};
+        inliers_global = 0;
         % Throw away points in the background. Keep all the matches in the
         % x range [lbx, ubx]
         I = find( feat1(1,:) > lbx & feat1(1,:)< ubx & feat2(1,:) > lbx & feat2(1,:)< ubx );
@@ -159,6 +160,7 @@ function [fundamental_matrices, inliers_matched_features_combined] = normalised_
                     F_best = Fdn;
                     detections = number_inliers;
                     feat1_best = feat1_seed(:,inliers);
+                    inliers_best = inliers;
                     feat2_best = feat2_seed(:,inliers);
                 end
 
@@ -168,11 +170,20 @@ function [fundamental_matrices, inliers_matched_features_combined] = normalised_
                 detections_global = detections;
                 feat1_bestglobal = feat1_best;
                 feat2_bestglobal = feat2_best;
+                inliers_global = inliers_best;
             end
-                iter = iter + 1;
+            iter = iter + 1;
+            if detections_global == 0 && iter == N
+                iter = 1;  
+                disp('first set of iterations not sufficient, trying another set')
+            end
         end
-        inliers_matched_features_combined(1:2,kk) = {{feat1_bestglobal};{feat2_bestglobal}};
-        fundamental_matrices(1,kk) = {[F_best_global]};
+        inliers_matched_features_combined(1:2,kk) = {feat1_bestglobal;feat2_bestglobal};
+        fundamental_matrices(1,kk) = {[F_best_global]};        
+        
+        %find the indices of the matched features
+        inliers_matches{kk} = matches(:,sort(seed(inliers_global))); 
+%         inliers_matches = 1;
     end
         
 end
