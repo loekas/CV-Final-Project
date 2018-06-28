@@ -1,4 +1,4 @@
-function [matched_features_combined, matches, scores] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift)
+function [matched_features_combined, matches] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift)
 % # INPUT PARAMETERS:
 % * feat_haraff_sift = feature obtainined with strategy one: in this case
 % Harris affine SIFT features. Could be other feature as well. Format is 
