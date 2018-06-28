@@ -50,11 +50,14 @@ ubx = 3200;
 [fundamental_matrices, inliers_matched_features_combined,inliers_matches] = normalised_8point_ransac_multiframes(matched_feature_points_combined, matches, N, P, no_points, threshold, lbx, ubx);
 
 %% Part 3: Apply the chaining method
-% find match indices corresponding to the newly found matched features.
 
 point_view_matrix = chain(inliers_matches);
+%% show the outline of the point_view_matrix
+point_view_matrix(point_view_matrix~= 0) = 1;
 
-
+image1 = imresize(point_view_matrix,[5000,length(point_view_matrix)]);
+figure()
+imshow(image1)
 
 %%
 % Visual verfication of the results with the aid of epipolar lines
