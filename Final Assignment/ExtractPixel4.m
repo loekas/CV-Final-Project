@@ -12,7 +12,7 @@ for i = 1:(length(Blocks)-2)
         points_x(j+1,:) = inliers_matched_features_combined{1,i+j-1}(2,I_match(j+1,:));
         points_y(j+1,:) = inliers_matched_features_combined{1,i+j-1}(2,I_match(j+1,:));
     end 
-    Points{i} = [points_x;points_y];
+    Points{i} = round([points_x;points_y]);
     clear points_x;clear points_y;
 end
 % for the 18th index
@@ -32,7 +32,7 @@ end
         points_x(4,:) = inliers_matched_features_combined{1,1}(2,I_match(4,:));
         points_y(4,:) = inliers_matched_features_combined{1,1}(2,I_match(4,:));
         
-    Points{18} = [points_x;points_y]; 
+    Points{18} = round([points_x;points_y]); 
 clear points_x;clear points_y;
 
 % for the 19th index
@@ -52,7 +52,7 @@ clear points_x;clear points_y;
         points_x(4,:) = inliers_matched_features_combined{1,2}(2,I_match(4,:));
         points_y(4,:) = inliers_matched_features_combined{1,2}(2,I_match(4,:));
         
-    Points{19} = [points_x;points_y]; 
+    Points{19} = ([points_x;points_y]); 
         
 end
 

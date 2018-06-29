@@ -70,14 +70,38 @@ Blocks4 = FindBlocks(point_view_matrix, 4);
 Points3 = ExtractPixel3(Blocks3, inliers_matches, inliers_matched_features_combined);
 Points4 = ExtractPixel4(Blocks4, inliers_matches, inliers_matched_features_combined);
 % Calculate the 3D points per block
-[M3,S3] = PointsToCoordinates(Points3);
-[M4,S4] = PointsToCoordinates(Points4);
+[M3,S3] = PointsTo3DCoordinates(Points3);
+[M4,S4] = PointsTo3DCoordinates(Points4);
 % Merge all together in 1 pointcloud
+%%
+% for i = 1:5
+% I4{i} = S4{i+14};
+% end
+% for j = 1:12
+%     I4{5+j} = S4{j};
+% end
+% 
+% for i = 1:5
+% I3{i} = S3{i+14};
+% end
+% for j = 1:12
+%     I3{5+j} = S3{j};
+% end
+
 S = Merge3DPointclouds(S3,S4);
 
 
 
+%% eliminate affine ambiguity
+[M, PointCloud] = EliminateAmbiguity(M3{1},S);
+% PointCloud = S
 
+figure()
+subplot(1,2,1)
+imshow(img)
+% plot3(S(1,:),S(2,:),S(3,:),'b.')
+subplot(1,2,2)
+plot3(S3{19}(1,:),S3{19}(2,:),S3{19}(3,:),'r.')
 
 %% Visual verfication of the results with the aid of epipolar lines
 % Pick two consecutive frames

@@ -183,6 +183,7 @@ function [fundamental_matrices, inliers_matched_features_combined,inliers_matche
         
         %find the indices of the matched features
         inliers_matches{kk} = matches(:,sort(seed(inliers_global))); 
+        kk
     end
         
 end
