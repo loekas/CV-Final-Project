@@ -32,13 +32,13 @@ run('../../vl_feat Toolbox/toolbox/vl_setup.m');
 % [feat_hesaff_sift, descr_hesaff_sift] = features_descriptors('Part 1/Files with new threshold/', '*.hesaff.sift');
   load('descriptors.mat')      
         % %% Generate matches and corresponding featurepoints between consecutive frames, i.e.  Frames 1-2, 2-3 ... 18-19, 19-1
-% [matched_feature_points_combined, matches] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift);        
-load('matches.mat')
+[matched_feature_points_combined, matches] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift);        
+% load('matches.mat')
 
 %% Part 2: Apply normalized 8-point RANDAC to find best matches
 % Set parameters for Normalized 8-point RANSAC
-N = 100; % Minimum number of iterations
-P = 0.5; % Percentage of matches for Normalised 8 point RANSAC algorithm
+N = 10; % Minimum number of iterations
+P = 1; % Percentage of matches for Normalised 8 point RANSAC algorithm
 no_points = 8;
 threshold = 10;
 % Ignore points outside these bounds. To avoid missed detections at the box

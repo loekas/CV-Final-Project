@@ -1,4 +1,4 @@
-function S = Merge3DPointclouds(S3,S4,blocks3,blocks4)
+function S = Merge3DPointclouds(S3,S4)
 %UNTITLED4 Summary of this function goes here
 
 % Match points in 4 point to 3 point views, to find corresponding points
