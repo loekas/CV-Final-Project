@@ -18,5 +18,9 @@ M{i} = U*sqrt(W);
 S{i} = sqrt(W)*V';
 end
 
+% use procrustes to transform pointclouds to the basis of image 1
+
+for i = 2:length(Points)
+    [~, S_new{i-1}] = procrustes(S{1},S{i});
 end
 
