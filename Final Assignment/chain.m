@@ -28,7 +28,7 @@ end
 [~,I_last, I_first]   = intersect(point_view_matrix(no_img+1,:),point_view_matrix(1,:));
 point_view_matrix(:,I_first) = point_view_matrix(:,I_first) + point_view_matrix(:,I_last);
 
-point_view_matrix(:,I_last) = [];
+point_view_matrix(:,I_last(2:end)) = [];
 point_view_matrix(no_img+1,:) = [];
 
 end

@@ -37,7 +37,7 @@ load('matches.mat')
 
 %% Part 2: Apply normalized 8-point RANDAC to find best matches
 % Set parameters for Normalized 8-point RANSAC
-N = 10; % Minimum number of iterations
+N = 30; % Minimum number of iterations
 P = 0.5; % Percentage of matches for Normalised 8 point RANSAC algorithm
 no_points = 8;
 threshold = 10;
@@ -65,6 +65,14 @@ point_view_matrix = chain(inliers_matches);
 % find block matrices
 Blocks3 = FindBlocks(point_view_matrix, 3);
 Blocks4 = FindBlocks(point_view_matrix, 4);
+
+% Extract the Pixel locations
+
+
+
+% Calculate the 3D points per block
+
+
 %% Visual verfication of the results with the aid of epipolar lines
 % Pick two consecutive frames
 frame1 = 19;
