@@ -37,7 +37,7 @@ load('matches.mat')
 
 %% Part 2: Apply normalized 8-point RANDAC to find best matches
 % Set parameters for Normalized 8-point RANSAC
-N = 75; % Minimum number of iterations
+N = 100; % Minimum number of iterations
 P = 0.5; % Percentage of matches for Normalised 8 point RANSAC algorithm
 no_points = 8;
 threshold = 10;
@@ -47,8 +47,8 @@ lbx = 800;
 ubx = 3200; 
 
 % Do RANSAC
-% [fundamental_matrices, inliers_matched_features_combined, inliers_matches] = normalised_8point_ransac_multiframes(matched_feature_points_combined, matches, N, P, no_points, threshold, lbx, ubx);
-load('norm_8_ransac.mat')
+[fundamental_matrices, inliers_matched_features_combined, inliers_matches] = normalised_8point_ransac_multiframes(matched_feature_points_combined, matches, N, P, no_points, threshold, lbx, ubx);
+% load('norm_8_ransac.mat')
 %% Part 3: Apply the chaining method
 
 point_view_matrix = chain(inliers_matches);
