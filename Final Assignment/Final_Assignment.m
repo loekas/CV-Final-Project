@@ -64,8 +64,8 @@ point_view_matrix = chain(inliers_matches);
 
 %% Part 4: Stiching
 % find block matrices
-Blocks3 = FindBlocks(point_view_matrix, 3);
-Blocks4 = FindBlocks(point_view_matrix, 4);
+Blocks3 = FindBlocks3(point_view_matrix, 3);
+Blocks4 = FindBlocks4(point_view_matrix, 4);
 
 % Extract the Pixel locations
 % Points3 = ExtractPixel3(Blocks3, inliers_matches, inliers_matched_features_combined);
@@ -97,10 +97,7 @@ Points4 = ExtractPixel42(Blocks4, matches, matched_feature_points_combined);
 %     I3{5+j} = S3{j};
 % end
 
-Points = Merge3DPointclouds(S3,S4,Blocks3);
-
-
-
+Points = Merge3DPointclouds(S3,S4,Blocks3,Blocks4);
 %% eliminate affine ambiguity
 % [M, PointCloud] = EliminateAmbiguity(M3{1},S);
 PointCloud = Points;
@@ -110,14 +107,14 @@ PointCloud = Points;
 % imshow(img)
 % plot3(S(1,:),S(2,:),S(3,:),'b.')
 % subplot(1,2,2)
-% for i = 1:18
-% plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'r.')
-% i = i+1;
-% hold on
-% plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'b.')
-% 
-% pause(0.5)
-% end
+for i = 1:18
+plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'r.')
+i = i+1;
+hold on
+plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'b.')
+
+pause(0.5)
+end
 figure
 plot3(PointCloud(1,:),PointCloud(2,:),PointCloud(3,:),'r.')
 
