@@ -9,6 +9,7 @@ for i = 1:(length(Blocks)-1)
         points_y(1,:) = inliers_matched_features_combined{1,i}(1,I_match(1,:));
     for j = 1:no_cons_img-1
         [~, I_match] = ismember(Blocks{i},inliers_matches{1,i+j-1}(2,:));
+
         points_x(j+1,:) = inliers_matched_features_combined{1,i+j-1}(2,I_match(j+1,:));
         points_y(j+1,:) = inliers_matched_features_combined{1,i+j-1}(2,I_match(j+1,:));
     end 

@@ -77,9 +77,9 @@ Points4 = ExtractPixel42(Blocks4, matches, matched_feature_points_combined);
 [M4,S4] = PointsTo3DCoordinates(Points4);
 
 % match matches to points and add view index
-% for i = 1:length(S3)
-% Points_new{i}= [S3{i};Blocks3{i}(1,:);i*ones(1,length(S3{i}))];
-% end
+for i = 1:length(S3)
+Points_new{i}= [S3{i};Blocks3{i}(1,:);i*ones(1,length(S3{i}))];
+end
 % Merge all together in 1 pointcloud
 
 %%
@@ -97,27 +97,27 @@ Points4 = ExtractPixel42(Blocks4, matches, matched_feature_points_combined);
 %     I3{5+j} = S3{j};
 % end
 
-Points = Merge3DPointclouds(S3,S4,Blocks3);
+S = Merge3DPointclouds(S3,S4,Blocks3,Blocks4);
 
 
 
 %% eliminate affine ambiguity
 % [M, PointCloud] = EliminateAmbiguity(M3{1},S);
-PointCloud = Points;
+% PointCloud = S
 
 % figure()
 % subplot(1,2,1)
 % imshow(img)
 % plot3(S(1,:),S(2,:),S(3,:),'b.')
 % subplot(1,2,2)
-% for i = 1:18
-% plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'r.')
-% i = i+1;
-% hold on
-% plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'b.')
-% 
-% pause(0.5)
-% end
+for i = 1:18
+plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'r.')
+i = i+1;
+hold on
+plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'b.')
+
+pause(0.5)
+end
 figure
 plot3(PointCloud(1,:),PointCloud(2,:),PointCloud(3,:),'r.')
 

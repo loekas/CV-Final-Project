@@ -26,8 +26,8 @@ end
 % For the last image, check whether it has matches with the first image and
 % move the columns correspoding to that to the row of the first image
 [~,I_last, I_first]   = intersect(point_view_matrix(no_img+1,:),point_view_matrix(1,:));
-point_view_matrix(:,I_first(2:end)) = point_view_matrix(:,I_first(2:end)) + point_view_matrix(:,I_last(2:end));
-
+point_view_matrix(1:end,I_first(2:end)) = max(point_view_matrix(1:end,I_first(2:end)),point_view_matrix(1:end,I_last(2:end)));
+% 
 point_view_matrix(:,I_last(2:end)) = [];
 point_view_matrix(no_img+1,:) = [];
 
