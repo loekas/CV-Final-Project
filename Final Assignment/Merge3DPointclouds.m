@@ -29,6 +29,6 @@ end
 
 Matches = [Blocks_3{1}(1,:);ones(1,length(Blocks_3{1}))];
 Match = [Matches,Match];    
-Points = [Points_3{1};Match]
+Points = [Points_3{1};Match];
 end
 

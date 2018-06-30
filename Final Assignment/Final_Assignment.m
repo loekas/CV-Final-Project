@@ -2,9 +2,10 @@
 clear all;close all;clc;
 
 %% add all paths & folders
-addpath('Part 1')
+addpath('Part 1/')
 run('../../vl_feat Toolbox/toolbox/vl_setup.m');
 
+%% Load Pictures
 
 %% Part 1: Extracting Harris and Hessian interest points and corresponding SIFT descriptors 
         %% FIRST TIME ONLY
@@ -30,10 +31,12 @@ run('../../vl_feat Toolbox/toolbox/vl_setup.m');
         % load the SIFT Features from the previously constructed files
 % [feat_haraff_sift, descr_haraff_sift] = features_descriptors('Part 1/Files with new threshold/', '*.haraff.sift');
 % [feat_hesaff_sift, descr_hesaff_sift] = features_descriptors('Part 1/Files with new threshold/', '*.hesaff.sift');
-  load('descriptors.mat')      
+%   load('descriptors.mat')      
+  load('descriptors_0.1.mat')      
         % %% Generate matches and corresponding featurepoints between consecutive frames, i.e.  Frames 1-2, 2-3 ... 18-19, 19-1
-% [matched_feature_points_combined, matches] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift);        
-load('matches.mat')
+[matched_feature_points_combined, matches, feat_comb, descr_comb] = combine_feature_return_matches(feat_haraff_sift, feat_hesaff_sift, descr_haraff_sift, descr_hesaff_sift);        
+% load('matches.mat')
+% load('matches_0.1.mat')
 
 %% Part 2: Apply normalized 8-point RANDAC to find best matches
 % Set parameters for Normalized 8-point RANSAC
@@ -49,7 +52,8 @@ ubx = 3200;
 % Do RANSAC
 % [fundamental_matrices, inliers_matched_features_combined, inliers_matches] = normalised_8point_ransac_multiframes(matched_feature_points_combined, matches, N, P, no_points, threshold, lbx, ubx);
 % load('norm_8_ransac.mat')
-load('HelloImawesome')
+% load('HelloImawesome')
+load('Extended_ransac_0.1.mat')
 %% Part 3: Apply the chaining method
 
 point_view_matrix = chain(inliers_matches);
@@ -77,44 +81,13 @@ Points4 = ExtractPixel42(Blocks4, matches, matched_feature_points_combined);
 [M4,S4] = PointsTo3DCoordinates(Points4);
 
 % match matches to points and add view index
-% for i = 1:length(S3)
-% Points_new{i}= [S3{i};Blocks3{i}(1,:);i*ones(1,length(S3{i}))];
-% end
 % Merge all together in 1 pointcloud
-
-%%
-% for i = 1:5
-% I4{i} = S4{i+14};
-% end
-% for j = 1:12
-%     I4{5+j} = S4{j};
-% end
-% 
-% for i = 1:5
-% I3{i} = S3{i+14};
-% end
-% for j = 1:12
-%     I3{5+j} = S3{j};
-% end
 
 Points = Merge3DPointclouds(S3,S4,Blocks3,Blocks4);
 %% eliminate affine ambiguity
 % [M, PointCloud] = EliminateAmbiguity(M3{1},S);
 PointCloud = Points;
 
-% figure()
-% subplot(1,2,1)
-% imshow(img)
-% plot3(S(1,:),S(2,:),S(3,:),'b.')
-% subplot(1,2,2)
-for i = 1:18
-plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'r.')
-i = i+1;
-hold on
-plot3(S3{i}(1,:),S3{i}(2,:),S3{i}(3,:),'b.')
-
-pause(0.5)
-end
 figure
 plot3(PointCloud(1,:),PointCloud(2,:),PointCloud(3,:),'r.')
 
